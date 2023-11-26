@@ -67,7 +67,11 @@ class ArchivableModel(models.Model):
         return bool(self.archived)
 
 
-class Report(SimpleModel, ActivatableModel, ArchivableModel):
+    
+
+class Report(SimpleModel):
+    created_at = models.DateTimeField(auto_now_add=True, null=True)
+    updated_at = models.DateTimeField(auto_now=True, null=True)
     class Meta:
         ordering = ["name"]
         verbose_name = "Report"

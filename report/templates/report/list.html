@@ -97,11 +97,11 @@
                                                             <div class="ms-1">
                                                                 <h6 class="mb-1"> <a href="project-details"
                                                                         class="float-start">{{ report.name }}</a> <span
-                                                                        class="text-muted bg-light fs-11 mx-2">{{ report.activated }}</span> </h6>
+                                                                        class="text-muted bg-light fs-11 mx-2">{{ report.updated | date:"F d Y" }}</span> </h6>
                                                                 <span
                                                                     class="text-muted border-end pe-2 fs-11 float-start mt-1">28
                                                                     transactions</span>
-                                                                <span class="text-teritary ps-1 fs-11">11 Nov 19</span>
+                                                                <span class="text-teritary ps-1 fs-11">{{ report.created| date:"F d Y" }}</span>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -147,8 +147,8 @@
                                                     </div>
                                                     <div class="col-auto">
                                                         <p class="mb-0">
-                                                            <span class="text-muted d-block">Due Date</span>
-                                                            <span class="text-danger">{{ report.activated }}</span>
+                                                            <span class="text-muted d-block">Created Date</span>
+                                                            <span class="text-danger">{{ report.created }}</span>
                                                         </p>
                                                     </div>
                                                 </div>
