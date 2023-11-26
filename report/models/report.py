@@ -73,7 +73,7 @@ class Report(SimpleModel):
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     updated_at = models.DateTimeField(auto_now=True, null=True)
     class Meta:
-        ordering = ["name"]
+        ordering = ["-created_at"]
         verbose_name = "Report"
         verbose_name_plural = "Reports"
 
