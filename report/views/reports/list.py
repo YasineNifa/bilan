@@ -15,7 +15,6 @@ class ReportListView(ListView):
     context_object_name = "reports"
 
     def get_queryset(self):
-        print("get_queryset")
         return Report.objects.all()
     
     # Add more context

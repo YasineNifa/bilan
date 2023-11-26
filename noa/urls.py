@@ -19,6 +19,6 @@ from django.urls import path, include
 app_name = 'noa'
 urlpatterns = [
     path('admin/', admin.site.urls),
-    # path('', include('app.urls')),
+    path('', include('app.urls')),
     path("report/", include('report.urls')),
 ]
