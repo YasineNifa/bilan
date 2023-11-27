@@ -11,7 +11,6 @@ class ReportDeleteView(DeleteView):
     model_name = "report"
     name = "reports_delete"
 
-    title = "Create Report"
     template_name = "report/delete.html"
 
     def get_success_url(self):
