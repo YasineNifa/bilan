@@ -103,7 +103,7 @@
                                                             <div class="ms-1">
                                                                 <h6 class="mb-1"> <a href="project-details"
                                                                         class="float-start">{{ report.name }}</a> <span
-                                                                        class="text-muted bg-light fs-11 mx-2">{{ report.updated | date:"F d Y" }}</span> </h6>
+                                                                        class="text-muted bg-light fs-11 mx-2">{{ report.updated}}</span> </h6>
                                                                 <span
                                                                     class="text-muted border-end pe-2 fs-11 float-start mt-1">28
                                                                     transactions</span>
@@ -122,10 +122,6 @@
                                                             <div class="dropdown-menu dropdown-menu-start">
                                                                 <a class="dropdown-item" href="{% url 'report:reports_update' report.pk %}"><i
                                                                         class="fe fe-edit me-2"></i> Edit</a>
-                                                                <a class="dropdown-item" href="#"><i
-                                                                        class="fe fe-share me-2"></i> Share</a>
-                                                                <a class="dropdown-item" href="#"><i
-                                                                        class="fe fe-download me-2"></i> Clone</a>
                                                                 <a class="dropdown-item" href="{% url 'report:reports_delete' report.pk %}"><i
                                                                         class="fe fe-trash me-2"></i> Delete</a>
                                                             </div>
