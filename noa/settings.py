@@ -59,6 +59,7 @@ INSTALLED_APPS = [
     # Local apps
     # 'app',
     'report',
+    'compte',
 ]
 
 MIDDLEWARE = [
