@@ -1,12 +1,12 @@
 from django.shortcuts import reverse
 from django.views.generic.edit import UpdateView
 
-# from report.forms import ReportModelForm
+from compte.forms import CompteModelForm
 from compte.models import Compte
 
 
 class CompteUpdateView(UpdateView):
-    # form_class = ReportModelForm
+    form_class = CompteModelForm
     model = Compte
     model_name = "compte"
     name = "comptes_update"
