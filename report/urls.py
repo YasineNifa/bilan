@@ -1,7 +1,7 @@
 from django.urls import path
 
 from report.apps import ReportConfig
-from report.views import IndexView, reports
+from report.views import reports
 
 
 app_name = ReportConfig.name
