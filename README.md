@@ -5,3 +5,4 @@ A complete dashboard with django, django template and react (Javascript, html, c
 Finish the Compte Model
 1 - Add Templates
 2 - Fix Templates
+3 - Start with the list view to fix it
