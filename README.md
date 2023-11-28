@@ -4,4 +4,4 @@ A complete dashboard with django, django template and react (Javascript, html, c
 
 Finish the Compte Model
 1 - Add Templates
-2 - Add Form
+2 - Fix Templates
