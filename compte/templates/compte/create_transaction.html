@@ -16,7 +16,7 @@
     <div class="ms-auto pageheader-btn">
         <ol class="breadcrumb">
             <li class="breadcrumb-item">Apps</li>
-            <li class="breadcrumb-item"><a href="{% url 'compte:index' %}">Transactions</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'compte:transactions_list' %}">Transactions</a></li>
             <li class="breadcrumb-item active" aria-current="page">New Transaction</li>
         </ol>
     </div>
@@ -98,7 +98,7 @@
 
                     <div class="row p-5">
                         <div class="btn-list text-end">
-                            <button class="btn btn-outline-danger" type="reset" href="{% url 'report:index' %}">
+                            <button class="btn btn-outline-danger" type="reset" href="{% url 'compte:transactions_list' %}">
                                 <i class="fe fe-x-circle"></i>
                                 Reset
                             </button>
