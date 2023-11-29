@@ -1,5 +1,5 @@
 from compte.forms.comptes import CompteModelForm
-from report.forms.confirm_deletion import ConfirmDeleteForm
+from compte.forms.confirm_deletion import ConfirmDeleteForm
 
 
 __all__ = [
