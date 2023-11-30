@@ -56,7 +56,8 @@ INSTALLED_APPS = [
     'crispy_forms',
     'crispy_tailwind',
     'django_filters',
-
+    'dal',
+    'dal_select2',
     # Local apps
     # 'app',
     'report',

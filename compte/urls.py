@@ -7,6 +7,7 @@ app_name = CompteConfig.name
 urlpatterns = [
     path("", comptes.CompteListView.as_view(), name="index"),
     # Comptes
+    path("autocomplete/",comptes.CompteAutocompleteView.as_view(),name="comptes_autocomplete",),
     path("create/",comptes.CompteCreateView.as_view(),name="comptes_create"),
     path('<int:pk>/update/', comptes.CompteUpdateView.as_view(),name='comptes_update'),
     path('<int:pk>/delete/', comptes.CompteDeleteView.as_view(), name='comptes_delete'),

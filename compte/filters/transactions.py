@@ -1,6 +1,8 @@
 import django_filters
+from dal import autocomplete
 
 from compte.models import Transaction
+
 
 class TransactionFilter(django_filters.FilterSet):
     search = django_filters.CharFilter(
@@ -18,7 +20,10 @@ class TransactionFilter(django_filters.FilterSet):
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        print("self queruset init : ", self.queryset)
+        self.form.fields["partie"].widget = autocomplete.Select2(
+            url="compte:comptes_autocomplete"
+        )
+
 
 
     def search_filter(self, queryset, _, value):
