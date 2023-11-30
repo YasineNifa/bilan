@@ -7,7 +7,7 @@ from compte.apps import CompteConfig
 
 class Transaction(models.Model):
     description = models.TextField(blank=True)
-    date = models.DateTimeField(blank=True, null=True)
+    date = models.DateField(blank=True, null=True)
     partie = models.ForeignKey("compte.Compte", related_name="partie_transactions", on_delete=CASCADE)
     contrepartie = models.ForeignKey("compte.Compte", related_name="contrepartie_transactions", on_delete=CASCADE)
     montant = models.DecimalField(
@@ -15,6 +15,7 @@ class Transaction(models.Model):
         max_digits=20,
         decimal_places=4,
     )
+    report = models.ForeignKey("report.Report", related_name="transactions", on_delete=CASCADE)
 
     class Meta:
         ordering = ["date"]

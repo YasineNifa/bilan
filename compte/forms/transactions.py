@@ -1,12 +1,23 @@
-from django.forms import ModelForm
+from django import forms
+from django.conf import settings
 
 from compte.models import Transaction
 
 
 
-class TransactionModelForm(ModelForm):
-
+class TransactionModelForm(forms.ModelForm):
 
     class Meta:
         model = Transaction
-        fields = "__all__"
+        fields = (
+            "description",
+            "date",
+            "partie",
+            "contrepartie",
+            "montant",
+            "report",
+        )
+
+        widgets = {
+            "date": forms.DateInput(format=settings.ISO_DATE_FORMAT),
+        }

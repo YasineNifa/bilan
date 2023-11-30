@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     # third party
     'crispy_forms',
     'crispy_tailwind',
+    'django_filters',
 
     # Local apps
     # 'app',
@@ -165,3 +166,5 @@ print(STATIC_DIR)
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 CRISPY_ALLOWED_TEMPLATE_PACKS = "tailwind"
 CRISPY_TEMPLATE_PACK = "tailwind"
+
+ISO_DATE_FORMAT = r"%Y-%m-%d"

@@ -1,7 +1,10 @@
+from typing import Any
 from django.views.generic import ListView
 
 # from report.forms import ReportModelForm
-from compte.models import Transaction
+from compte.models import Transaction, Compte
+from compte.filters import TransactionFilter
+from report.models import Report
 
 
 
@@ -14,20 +17,28 @@ class TransactionListView(ListView):
     context_object_name = "transactions"
 
     def get_queryset(self):
-        return Transaction.objects.all()
-    
-    # Add more context
-    def get_context_data(self, **kwargs):
-        context =  super(TransactionListView,self).get_context_data(**kwargs)
-        
-        # TODO add archived__isnull=True, activated__isnull=False filters
-        queryset = Transaction.objects.filter()
-        context.update(
-            {
-                "comptes": queryset
-            }
+        self.queryset = super().get_queryset()
+
+        filters = TransactionFilter(
+            self.request.GET,queryset=self.queryset, request=self.request,
         )
-        return context
+        filters.form.fields["report"].queryset = Report.objects.all()
+        filters.form.fields["partie"].queryset = Compte.objects.all()
+        filters.form.fields["contrepartie"].queryset = Compte.objects.all()
+
+        self.queryset = filters.qs
+        self.filters = filters.form
+
+        return self.queryset
+
+    def get_context_data(self, **kwargs):
+        kwargs = super(TransactionListView, self).get_context_data(**kwargs)
+        kwargs.update({
+            "components":{
+                "filters": self.filters
+            }
+        })
+        return kwargs
     
     def get(self, request, *args, **kwargs):
         return super(TransactionListView, self).get(request, *args, **kwargs)
