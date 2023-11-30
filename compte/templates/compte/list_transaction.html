@@ -27,110 +27,115 @@
     <div class="col-md-12">
         <div class="card">
             <div class="card-body p-4">
-                <div class="d-flex flex-col align-items-center justify-content-between">
-                    <div class="d-flex align-items-center justify-content-between">
-                        <h4 class="m-0">All Transactions</h4>
-                        <div class="btn-list">
-                            <a class="btn btn-primary" href="#">
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-inner-icn text-white"
-                                    enable-background="new 0 0 24 24" viewBox="0 0 24 24">
-                                    <path
-                                        d="M3.5,12C3.223877,12,3,12.223877,3,12.5S3.223877,13,3.5,13S4,12.776123,4,12.5S3.776123,12,3.5,12z M6.5,8h15C21.776123,8,22,7.776123,22,7.5S21.776123,7,21.5,7h-15C6.223877,7,6,7.223877,6,7.5S6.223877,8,6.5,8z M3.5,17C3.223877,17,3,17.223877,3,17.5S3.223877,18,3.5,18S4,17.776123,4,17.5S3.776123,17,3.5,17z M21.5,12h-15C6.223877,12,6,12.223877,6,12.5S6.223877,13,6.5,13h15c0.276123,0,0.5-0.223877,0.5-0.5S21.776123,12,21.5,12z M3.5,7C3.223877,7,3,7.223877,3,7.5S3.223877,8,3.5,8S4,7.776123,4,7.5S3.776123,7,3.5,7z M21.5,17h-15C6.223877,17,6,17.223877,6,17.5S6.223877,18,6.5,18h15c0.276123,0,0.5-0.223877,0.5-0.5S21.776123,17,21.5,17z" />
-                                </svg>
-                            </a>
-                            <a class="btn btn-radius btn-light-light" href="{% url 'compte:transactions_create' %}">
-                                <i class="fe fe-plus me-2"></i>
-                                New Transactions
-                            </a>
-                        </div>
-                    </div>
-                    <div>
-                        <form method="get" role="form" enctype="multipart/form-data" class="form"
-                            id="form-{{ app.namespace }}-{{ app.model }}-filters">
-                        
-                            {% for field in components.filters %}
-                            <div class="form-group{% if field.field.required %} required{% endif %}{% if field.errors %} error{% endif %}">
-                                {{ field|as_crispy_field }}
-                        
-                                {% if field.help_text %}
-                                <span class="ui small grey text">{{ field.help_text|safe }}</span>
-                                {% endif %}
-                            </div>
-                            {% endfor %}
-                        
-                            <div class="form-actions grid gap-y-2">
-                                <div class="row p-5">
-                                    <div class="btn-list text-end">
-                                        <button class="btn btn-outline-danger" type="reset" href="{% url 'report:index' %}">
-                                            <i class="fe fe-x-circle"></i>
-                                            Reset
-                                        </button>
-                                        <button class="btn btn-primary" type="submit">
-                                            <i class="fe fe-check-circle"></i>
-                                            Save
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        
-                        </form>
+                <div class="d-flex align-items-center justify-content-between">
+                    <h4 class="m-0">All Transactions</h4>
+                    <div class="btn-list">
+                        <a class="btn btn-primary" href="#">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-inner-icn text-white"
+                                enable-background="new 0 0 24 24" viewBox="0 0 24 24">
+                                <path
+                                    d="M3.5,12C3.223877,12,3,12.223877,3,12.5S3.223877,13,3.5,13S4,12.776123,4,12.5S3.776123,12,3.5,12z M6.5,8h15C21.776123,8,22,7.776123,22,7.5S21.776123,7,21.5,7h-15C6.223877,7,6,7.223877,6,7.5S6.223877,8,6.5,8z M3.5,17C3.223877,17,3,17.223877,3,17.5S3.223877,18,3.5,18S4,17.776123,4,17.5S3.776123,17,3.5,17z M21.5,12h-15C6.223877,12,6,12.223877,6,12.5S6.223877,13,6.5,13h15c0.276123,0,0.5-0.223877,0.5-0.5S21.776123,12,21.5,12z M3.5,7C3.223877,7,3,7.223877,3,7.5S3.223877,8,3.5,8S4,7.776123,4,7.5S3.776123,7,3.5,7z M21.5,17h-15C6.223877,17,6,17.223877,6,17.5S6.223877,18,6.5,18h15c0.276123,0,0.5-0.223877,0.5-0.5S21.776123,17,21.5,17z" />
+                            </svg>
+                        </a>
+                        <a class="btn btn-radius btn-light-light" href="{% url 'compte:transactions_create' %}">
+                            <i class="fe fe-plus me-2"></i>
+                            New Transactions
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="col-12 col-sm-12">
-        <div class="card">
-            <div class="card-body project-list-table-container">
-                <div class="table-responsive">
-                    <table id="project-table"
-                        class="table text-nowrap mb-0 table-bordered border-top border-bottom project-list-main">
-                        <thead class="table-head">
-                            <tr>
-                                <th class="bg-transparent border-bottom-0">Report</th>
-                                <th class="bg-transparent border-bottom-0">Date</th>
-                                <th class="bg-transparent border-bottom-0">Description</th>
-                                <th class="bg-transparent border-bottom-0">Partie</th>
-                                <th class="bg-transparent border-bottom-0">Contrepartie</th>
-                                <th class="bg-transparent border-bottom-0">Montant</th>
-                                <th class="bg-transparent border-bottom-0 no-btn">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody class="table-body">
-                            {% for transaction in transactions %}
-                            <tr>
-                                <td class="text-muted fs-15 fw-semibold">{{ transaction.report }}</td>
-                                <td>
-                                    <h6 class="mb-0 fs-14 fw-semibold">{{ transaction.date }}</h6>
-                                </td>
-                                <td class="text-muted fs-15 fw-semibold">{{ transaction.description }}</td>
-                                <td class="text-muted fs-15 fw-semibold">{{ transaction.partie }}</td>
-                                <td class="text-muted fs-15 fw-semibold">{{ transaction.contrepartie }}</td>
-                                <td class="text-muted fs-15 fw-semibold">{{ transaction.montant }}</td>
-                                <td>
-                                    <div class="d-flex align-items-stretch">
-                                        <a class="btn btn-sm btn-outline-secondary border me-2" data-bs-toggle="tooltip"
-                                            href="{% url 'compte:transactions_delete' transaction.pk %}"
-                                            data-bs-original-title="Delete">
-                                            <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24"
-                                                width="16">
-                                                <path d="M0 0h24v24H0V0z" fill="none" />
-                                                <path
-                                                    d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5l-1-1h-5l-1 1H5v2h14V4h-3.5z" />
-                                            </svg>
-                                        </a>
-                                        <a class="dropdown-item" href="{% url 'compte:transactions_update' transaction.pk %}"><i
-                                                class="fe fe-edit-2 me-2"></i></a>
-                                    </div>
-                                </td>
-                            </tr>
-                            {% endfor %}
-                        </tbody>
-                    </table>
+    <div class="row"></div>
+        <div class="col-xl-9 col-lg-12">
+            <div class="card">
+                <div class="card-body project-list-table-container">
+                    <div class="table-responsive">
+                        <table id="project-table"
+                            class="table text-nowrap mb-0 table-bordered border-top border-bottom project-list-main">
+                            <thead class="table-head">
+                                <tr>
+                                    <th class="bg-transparent border-bottom-0">Report</th>
+                                    <th class="bg-transparent border-bottom-0">Date</th>
+                                    <th class="bg-transparent border-bottom-0">Description</th>
+                                    <th class="bg-transparent border-bottom-0">Partie</th>
+                                    <th class="bg-transparent border-bottom-0">Contrepartie</th>
+                                    <th class="bg-transparent border-bottom-0">Montant</th>
+                                    <th class="bg-transparent border-bottom-0 no-btn">Action</th>
+                                </tr>
+                            </thead>
+                            <tbody class="table-body">
+                                {% for transaction in transactions %}
+                                <tr>
+                                    <td class="text-muted fs-15 fw-semibold">{{ transaction.report }}</td>
+                                    <td>
+                                        <h6 class="mb-0 fs-14 fw-semibold">{{ transaction.date }}</h6>
+                                    </td>
+                                    <td class="text-muted fs-15 fw-semibold">{{ transaction.description }}</td>
+                                    <td class="text-muted fs-15 fw-semibold">{{ transaction.partie }}</td>
+                                    <td class="text-muted fs-15 fw-semibold">{{ transaction.contrepartie }}</td>
+                                    <td class="text-muted fs-15 fw-semibold">{{ transaction.montant|floatformat:2 }}</td>
+                                    <td>
+                                        <div class="d-flex align-items-stretch">
+                                            <a class="btn btn-sm btn-outline-secondary border me-2" data-bs-toggle="tooltip"
+                                                href="{% url 'compte:transactions_delete' transaction.pk %}"
+                                                data-bs-original-title="Delete">
+                                                <svg xmlns="http://www.w3.org/2000/svg" height="20" viewBox="0 0 24 24"
+                                                    width="16">
+                                                    <path d="M0 0h24v24H0V0z" fill="none" />
+                                                    <path
+                                                        d="M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5l-1-1h-5l-1 1H5v2h14V4h-3.5z" />
+                                                </svg>
+                                            </a>
+                                            <a class="dropdown-item" href="{% url 'compte:transactions_update' transaction.pk %}"><i
+                                                    class="fe fe-edit-2 me-2"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div><!-- COL END -->
+        <div class="col-xl-3 col-lg-12">
+            <div class="card">
+                <div class="card-header border-bottom">
+                    <h3 class="card-title">Filters</h3>
+                </div>
+                <div class="card-body">
+                    <form method="get" role="form" enctype="multipart/form-data" class="form"
+                        id="form-{{ app.namespace }}-{{ app.model }}-filters">
+                    
+                        {% for field in components.filters %}
+                        <div class="form-group{% if field.field.required %} required{% endif %}{% if field.errors %} error{% endif %}">
+                            {{ field|as_crispy_field }}
+                    
+                            {% if field.help_text %}
+                            <span class="ui small grey text">{{ field.help_text|safe }}</span>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    
+                        <div class="form-actions grid gap-y-2">
+                            <div class="row p-5">
+                                <div class="btn-list text-end">
+                                    <button class="btn btn-outline-danger" href="{% url 'compte:transactions_list' %}">
+                                        <i class="fe fe-x-circle"></i>
+                                        Reset
+                                    </button>
+                                    <button class="btn btn-primary" type="submit">
+                                        <i class="fe fe-check-circle"></i>
+                                        Save
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
-    </div><!-- COL END -->
 </div>
 <!--ROW CLOSED-->
 
