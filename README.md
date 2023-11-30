@@ -18,4 +18,5 @@ Today :
 - Filters
 
 Tomorrow:
+- Report Transactions (ajouter) et clean UI
 - Export data in CSV
