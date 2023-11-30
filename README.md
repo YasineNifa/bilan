@@ -10,3 +10,12 @@ Finish the Compte Model
 5 - Filter data based on field in transaction
 6 - Export filtred data
 7 - Calculate the bilan and etz....
+
+
+Today : 
+- Clean Code
+- Improve UI/UX
+- Filters
+
+Tomorrow:
+- Export data in CSV
