@@ -16,3 +16,4 @@ To Do:
 - Image to Text
 - Create Transactions from Recognized text
 - Interface between Recognition and Creation to validate data
+- Apply OCR
