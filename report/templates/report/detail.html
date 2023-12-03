@@ -46,6 +46,13 @@
 													<a class="nav-link border py-1 mb-2 mb-lg-0 br-lg-5 mx-1 mx-md-1" data-bs-toggle="tab" href="#tab_2">
 														Transactions
 													</a>
+													<a class="nav-link border py-1 mb-2 mb-lg-0 br-lg-5 mx-1 mx-md-1" href="{% url 'report:reports_bilan' report.pk %}">
+														Bilanz
+													</a>
+													<a class="nav-link border py-1 mb-2 mb-lg-0 br-lg-5 mx-1 mx-md-1" 
+														href="{% url 'report:reports_erfolgsrechnung' report.pk %}">
+														Erfolgsrechnung
+													</a>
 												</nav>
 											</div><!-- /Tabs -->
 										</div>
