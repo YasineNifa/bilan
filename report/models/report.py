@@ -1,7 +1,7 @@
 from autoslug import AutoSlugField
 # from django.contrib.postgres.fields import ArrayField
 from django.db import models
-from django.db.models import Q
+from django.db.models import Q, Sum
 
 from report.apps import ReportConfig, NAME_MAX_LENGTH, TAG_MAX_LENGTH
 
@@ -98,3 +98,11 @@ class Report(SimpleModel):
         for number in filterList:
             query = query | Q(contrepartie__code__startswith=number)
         return self.transactions.filter(query)
+    
+    @property
+    def get_bilanz(self):
+        einkomme_total = self.get_einkomme.aggregate(Sum('montant'))
+        ausgabe_total = self.get_ausgabe.aggregate(Sum('montant'))
+
+        return einkomme_total["montant__sum"] - ausgabe_total["montant__sum"]
+
