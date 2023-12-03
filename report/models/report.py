@@ -1,7 +1,7 @@
 from autoslug import AutoSlugField
 # from django.contrib.postgres.fields import ArrayField
 from django.db import models
-from django.utils.timezone import now
+from django.db.models import Q
 
 from report.apps import ReportConfig, NAME_MAX_LENGTH, TAG_MAX_LENGTH
 
@@ -82,3 +82,19 @@ class Report(SimpleModel):
 
     def __str__(self):
         return self.name
+    
+    @property
+    def get_einkomme(self):
+        filterList = [1, 2]
+        query = Q()
+        for number in filterList:
+            query = query | Q(partie__code__startswith=number)
+        return self.transactions.filter(query)
+    
+    @property
+    def get_ausgabe(self):
+        filterList = [1, 2]
+        query = Q()
+        for number in filterList:
+            query = query | Q(contrepartie__code__startswith=number)
+        return self.transactions.filter(query)
