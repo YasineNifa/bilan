@@ -13,4 +13,5 @@ urlpatterns = [
     path('<int:pk>/delete/', reports.ReportDeleteView.as_view(), name='reports_delete'),
     path('<int:pk>/', reports.ReportDetailView.as_view(), name='reports_detail'),
     path('<int:pk>/bilan', reports.ReportBilanView.as_view(), name='reports_bilan'),
+    path('<int:pk>/erfolgsrechnung', reports.ReportErfolgsrechnungView.as_view(), name='reports_erfolgsrechnung'),
 ]

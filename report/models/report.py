@@ -105,4 +105,32 @@ class Report(SimpleModel):
         ausgabe_total = self.get_ausgabe.aggregate(Sum('montant'))
 
         return einkomme_total["montant__sum"] - ausgabe_total["montant__sum"]
+    
+    @property
+    def get_cat_3(self):
+        filterList = [3]
+        query = Q()
+        for number in filterList:
+            query = query | Q(contrepartie__code__startswith=number)
+        return self.transactions.filter(query)
+    
+    @property
+    def get_cat_4_5_6(self):
+        filterList = [4,5,6]
+        query = Q()
+        for number in filterList:
+            query = query | Q(partie__code__startswith=number)
+        return self.transactions.filter(query)
+    
+    @property
+    def get_erfolgsrechnung(self):
+        cat_3_total = self.get_cat_3.aggregate(Sum('montant'))
+        cat_4_5_6_total = self.get_cat_4_5_6.aggregate(Sum('montant'))
+
+        if not cat_3_total["montant__sum"]:
+            cat_3_total["montant__sum"]= 0
+        if not cat_4_5_6_total["montant__sum"]:
+            cat_4_5_6_total["montant__sum"] = 0
+
+        return cat_3_total["montant__sum"] - cat_4_5_6_total["montant__sum"]
 
