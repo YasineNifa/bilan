@@ -12,11 +12,7 @@ Finish the Compte Model
 - Calculate the bilan and etz....
 
 
-Today : 
-- Clean Code
-- Improve UI/UX
-- Filters
-
-Tomorrow:
-- Report Transactions (ajouter) et clean UI
-- Export data in CSV
+To Do:
+- Image to Text
+- Create Transactions from Recognized text
+- Interface between Recognition and Creation to validate data
