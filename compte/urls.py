@@ -23,7 +23,8 @@ urlpatterns = [
     # path('transaction/<int:pk>/', comptes.CompteDetailView.as_view(), name='comptes_detail'),
     # OCR
     path('ocr/upload/', ocrs.OcrUploadView.as_view(), name="ocr_upload"),
-    path('ocr/images/', ocrs.OcrListView.as_view(), name="ocr_images")
+    path('ocr/images/', ocrs.OcrListView.as_view(), name="ocr_images"),
+    path('ocr/images/<int:pk>/', ocrs.OcrDetailView.as_view(), name="ocrs_detail"),
 
 ]
 
