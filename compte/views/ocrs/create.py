@@ -17,5 +17,5 @@ class OcrUploadView(CreateView):
     template_name = "compte/ocr_upload.html"
 
     def get_success_url(self):
-        return reverse('compte:transactions_list')
+        return reverse('compte:ocrs_images')
     

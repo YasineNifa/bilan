@@ -1,0 +1,56 @@
+{% extends 'components/base.html' %}
+{% load tailwind_filters %}
+{% load static %}
+
+{% block styles %}
+
+{% endblock %}
+
+{% block content %}
+
+<!-- PAGE-HEADER -->
+<div class="page-header">
+    <div>
+        <h1 class="page-title">Images</h1>
+    </div>
+    <div class="ms-auto pageheader-btn">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item">Apps</li>
+            <li class="breadcrumb-item"><a href="javascript:void(0);">OCR</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Images</li>
+        </ol>
+    </div>
+</div>
+<!-- PAGE-HEADER END -->
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body p-4">
+                <div class="d-flex align-items-center justify-content-between">
+                    <h4 class="m-0">All Images</h4>
+                    <div class="btn-list">
+                        <a class="btn btn-radius btn-light-light" href="{% url 'compte:ocr_upload' %}">
+                            <i class="fe fe-plus me-2"></i>
+                            Add image
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xl-9 col-lg-12">
+        {% for ocr in ocrs %}
+        <div class="col-md-4">
+            <p>{{ ocr.name }}</p>
+            <img src="{{ ocr.ocr_img.url }}" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" />
+        </div>
+        </div>
+    </div>
+
+</div>
+{% endfor %}
+
+
+{% endblock %}
