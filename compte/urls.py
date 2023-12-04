@@ -22,8 +22,8 @@ urlpatterns = [
     path('transaction/<int:pk>/delete/', transactions.TransactionDeleteView.as_view(), name='transactions_delete'),
     # path('transaction/<int:pk>/', comptes.CompteDetailView.as_view(), name='comptes_detail'),
     # OCR
-    path('ocr/upload/', ocrs.OcrUploadView.as_view(), name="ocr_upload"),
-    path('ocr/images/', ocrs.OcrListView.as_view(), name="ocr_images"),
+    path('ocr/upload/', ocrs.OcrUploadView.as_view(), name="ocrs_upload"),
+    path('ocr/images/', ocrs.OcrListView.as_view(), name="ocrs_images"),
     path('ocr/images/<int:pk>/', ocrs.OcrDetailView.as_view(), name="ocrs_detail"),
 
 ]

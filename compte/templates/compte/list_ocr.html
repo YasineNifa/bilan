@@ -30,7 +30,7 @@
                 <div class="d-flex align-items-center justify-content-between">
                     <h4 class="m-0">All Images</h4>
                     <div class="btn-list">
-                        <a class="btn btn-radius btn-light-light" href="{% url 'compte:ocr_upload' %}">
+                        <a class="btn btn-radius btn-light-light" href="{% url 'compte:ocrs_upload' %}">
                             <i class="fe fe-plus me-2"></i>
                             Add image
                         </a>
@@ -39,18 +39,17 @@
             </div>
         </div>
     </div>
-    <div class="row">
-        <div class="col-xl-9 col-lg-12">
-        {% for ocr in ocrs %}
-        <div class="col-md-4">
-            <a href="{% url 'compte:ocrs_detail' ocr.pk %}"><p>{{ ocr.name }}</p></a>
-            <img src="{{ ocr.ocr_img.url }}" class="img-responsive" style="width: 100%; float: left; margin-right: 10px;" />
-        </div>
+    {% for ocr in ocrs %}
+    <div class="card-body">
+        <a href="{% url 'compte:ocrs_detail' ocr.pk %}"><p>{{ ocr.name }}</p></a>
+        <div class="row row-sm">
+            <div class="col">
+                <img alt="img" class="h-200 mb-2 mt-2 me-4 br-5" src="{{ ocr.ocr_img.url }}">
+            </div>
         </div>
     </div>
-
+    {% endfor %}
 </div>
-{% endfor %}
 
 
 {% endblock %}
