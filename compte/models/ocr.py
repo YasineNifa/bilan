@@ -4,6 +4,8 @@ import pytesseract
 from PIL import Image
 from PIL import ImageFilter
 from io import BytesIO
+import json
+import requests
 
 class Ocr(models.Model):
     name = models.CharField(max_length=50)
@@ -13,20 +15,17 @@ class Ocr(models.Model):
 
     @property
     def extract_text(self):
-        with open(self.ocr_img.path, 'rb') as image_file:
-            # Read the image file as bytes
-            image_bytes = image_file.read()
+        headers = {"Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoiNzViNjgzNzctYmVmOS00ODFmLWE1YmUtYmQ1ZGYzZjNiNzMxIiwidHlwZSI6ImFwaV90b2tlbiJ9.iZpAL6jDbYX74Qfo4e6zVNePdmu5F0h7qN-OHKFUOWA"}
 
-        # Create a BytesIO object and write the image bytes to it
-        image_bytes_io = BytesIO(image_bytes)
+        url = "https://api.edenai.run/v2/ocr/ocr"
+        data = {
+            "providers": "google",
+            "language": "en",
+            "fallback_providers": ""
+        }
+        files = {"file": open(self.ocr_img.path, 'rb')}
 
-        image = Image.open(image_bytes_io)
-        
-        try:
-            image.filter(ImageFilter.SHARPEN)
-        except ValueError:
-            print("Got an image that failed to sharpen")
-            pass
+        response = requests.post(url, data=data, files=files, headers=headers)
 
-        text= pytesseract.image_to_string(image, lang="eng")
-        return text
+        result = json.loads(response.text)
+        return result["google"]["text"]
