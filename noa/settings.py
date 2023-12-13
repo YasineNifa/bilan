@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     'django_filters',
     'dal',
     'dal_select2',
+    'dateutil',
     # Local apps
     # 'app',
     'report',
