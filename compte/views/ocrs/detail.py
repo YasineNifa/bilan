@@ -71,7 +71,7 @@ class OcrDetailView(DetailView):
 
         url = "https://api.edenai.run/v2/ocr/ocr"
         data = {
-            "providers": "google",
+            "providers": "amazon",
             "language": "en",
             "fallback_providers": ""
         }
@@ -80,7 +80,7 @@ class OcrDetailView(DetailView):
         response = requests.post(url, data=data, files=files, headers=headers)
 
         result = json.loads(response.text)
-        extracted_text = result["google"]["text"]
+        extracted_text = result["amazon"]["text"]
         ## =====================================================
 
         # with open(ocr_obj.ocr_img.path, 'rb') as image_file:
@@ -97,38 +97,43 @@ class OcrDetailView(DetailView):
         # extracted_text= pytesseract.image_to_string(image, lang="eng")
         print("Text retrieved : ", extracted_text)
         ## =====================================================
+        transactions = []
+        split_transactions = extracted_text.split(";")
+        for transaction in split_transactions:
+            split_extracted_text = transaction.split(",")
+            clean_text = map(self.remove_extra_spaces, split_extracted_text)
+            print("clean_text : ", clean_text)
+            keyList = ["date", "partie", "description", "contrepartie", "montant"]
+            d = {}
+            for key in keyList:
+                d[key] = None
 
-        split_extracted_text = extracted_text.split(",")
-        clean_text = map(self.remove_extra_spaces, split_extracted_text)
-        print("clean_text : ", clean_text)
-        keyList = ["date", "partie", "description", "contrepartie", "montant"]
-        d = {}
-        for key in keyList:
-            d[key] = None
+            for val in clean_text:
+                self.typecast(val, d)
 
-        for val in clean_text:
-            self.typecast(val, d)
+            transactions.append(d)
 
-        return d
+        return transactions
     
 
     def get_context_data(self, **kwargs):
         context = super(OcrDetailView, self).get_context_data(**kwargs)
-        context['transaction'] = self.extract_text()
+        context['transactions'] = self.extract_text()
         return context
 
 
     def post(self, request, *args, **kwargs):
         ocr_obj = self.get_object()
 
-        self.extracted_transactions = self.extract_text()
-        instance = Transaction(
-            date = self.extracted_transactions["date"],
-            partie = self.extracted_transactions["partie"],
-            description = self.extracted_transactions["description"],
-            contrepartie = self.extracted_transactions["contrepartie"],
-            montant = self.extracted_transactions["montant"],
-            report = ocr_obj.report
-        )
-        instance.save()
+        transactions = self.extract_text()
+        for transaction in transactions:
+            instance = Transaction(
+                date = transaction["date"],
+                partie = transaction["partie"],
+                description = transaction["description"],
+                contrepartie = transaction["contrepartie"],
+                montant = transaction["montant"],
+                report = ocr_obj.report
+            )
+            instance.save()
         return self.get(request, *args, **kwargs)

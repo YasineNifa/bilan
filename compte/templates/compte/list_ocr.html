@@ -40,11 +40,32 @@
         </div>
     </div>
     {% for ocr in ocrs %}
-    <div class="card-body">
-        <a href="{% url 'compte:ocrs_detail' ocr.pk %}"><p>{{ ocr.name }}</p></a>
-        <div class="row row-sm">
-            <div class="col">
-                <img alt="img" class="h-200 mb-2 mt-2 me-4 br-5" src="{{ ocr.ocr_img.url }}">
+    <div class="row">
+        <div class="card">
+            <div class="card-body">
+                <div class="example">
+                    <div class="row mt-4">
+                        <div class="col-md-12 col-xl-4">
+                            <div class="thumbnail">
+                                <a href="{% url 'compte:ocrs_detail' ocr.pk %}">
+                                    <img src="{{ ocr.ocr_img.url }}" alt="{{ ocr.name }}" class="thumbimg">
+                                </a>
+                                <div class="caption">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <h4>{{ ocr.name }}</h4>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="tag">
+                                                <span class="tag">{{ ocr.report }}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

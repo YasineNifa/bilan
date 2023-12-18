@@ -1,10 +1,5 @@
 from django.db import models
 
-import json
-import requests
-
-from dateutil import parser
-from datetime import datetime
 from django.db.models import CASCADE
 from compte.apps import CompteConfig
 

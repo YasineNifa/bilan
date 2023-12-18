@@ -44,6 +44,7 @@
                 <div class="card-header border-bottom">
                     <h3 class="card-title">Extracted Transactions</h3>
                 </div>
+                {% for transaction in transactions %}
                 <div class="card-body">
                     <form class="form" method="POST">
                         {% csrf_token %}
@@ -66,7 +67,7 @@
                                         <td data-field="age">{{transaction.description}}</td>
                                         <td data-field="name">{{transaction.contrepartie}}</td>
                                         <td data-field="age">{{transaction.montant}}</td>
-                                        <td style="width: 100px">
+                                        <td style="width: 300px">
                                             <a class="btn btn-primary fs-14 text-white edit-icn" title="Edit">
                                                 <i class="fe fe-edit"></i>
                                             </a>
@@ -84,6 +85,7 @@
                         </div>
                     </form>
                 </div>
+                {% endfor %}
             </div>
         </div>
     </div>
