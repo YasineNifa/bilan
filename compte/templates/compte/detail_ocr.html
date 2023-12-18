@@ -39,43 +39,50 @@
                 <img src="{{ ocr.ocr_img.url }}" class="img-responsive"
                     style="width: 100%; float: left; margin-right: 10px;" />
             </div>
-            <div class="col-md-6">
-                <p>{{ ocr.extract_text }}</p>
-            </div>
 
             <div class="card">
                 <div class="card-header border-bottom">
-                    <h3 class="card-title">Basic Editable Datatable</h3>
+                    <h3 class="card-title">Extracted Transactions</h3>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table editable-table table-nowrap table-bordered table-edit">
-                            <thead>
-                                <tr>
-                                    <th>Date</th>
-                                    <th>Partie</th>
-                                    <th>Description</th>
-                                    <th>Contrepartie</th>
-                                    <th>Montant</th>
-                                    <th>Edit</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr data-id="1">
-                                    <td data-field="id">1</td>
-                                    <td data-field="name">David McHenry</td>
-                                    <td data-field="age">24</td>
-                                    <td data-field="gender">Male</td>
-                                    <td data-field="age">24</td>
-                                    <td style="width: 100px">
-                                        <a class="btn btn-primary fs-14 text-white edit-icn" title="Edit">
-                                            <i class="fe fe-edit"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <form class="form" method="POST">
+                        {% csrf_token %}
+                        <div class="table-responsive">
+                            <table class="table editable-table table-nowrap table-bordered table-edit">
+                                <thead>
+                                    <tr>
+                                        <th>Date</th>
+                                        <th>Partie</th>
+                                        <th>Description</th>
+                                        <th>Contrepartie</th>
+                                        <th>Montant</th>
+                                        <th>Edit</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr data-id="1">
+                                        <td data-field="id">{{transaction.date}}</td>
+                                        <td data-field="name">{{transaction.partie}}</td>
+                                        <td data-field="age">{{transaction.description}}</td>
+                                        <td data-field="name">{{transaction.contrepartie}}</td>
+                                        <td data-field="age">{{transaction.montant}}</td>
+                                        <td style="width: 100px">
+                                            <a class="btn btn-primary fs-14 text-white edit-icn" title="Edit">
+                                                <i class="fe fe-edit"></i>
+                                            </a>
+                                            <!-- <a class="btn btn-primary fs-14 text-white edit-icn" title="Save" type="submit">
+                                                <i class="fe fe-save"></i>
+                                            </a> -->
+                                            <button class="btn btn-primary" type="submit">
+                                                <i class="fe fe-check-circle"></i>
+                                                Save
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

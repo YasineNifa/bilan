@@ -8,4 +8,4 @@ class OcrModelForm(forms.ModelForm):
  
     class Meta:
         model = Ocr
-        fields = ['name', 'ocr_img']
+        fields = ['name', 'ocr_img', 'report']

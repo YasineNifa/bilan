@@ -103,8 +103,11 @@ class Report(SimpleModel):
     def get_bilanz(self):
         einkomme_total = self.get_einkomme.aggregate(Sum('montant'))
         ausgabe_total = self.get_ausgabe.aggregate(Sum('montant'))
-
-        return einkomme_total["montant__sum"] - ausgabe_total["montant__sum"]
+        print("einkomme_total : ", einkomme_total["montant__sum"], ausgabe_total["montant__sum"])
+        if einkomme_total["montant__sum"] and ausgabe_total["montant__sum"]:
+            return einkomme_total["montant__sum"] - ausgabe_total["montant__sum"]
+        else:
+            return einkomme_total["montant__sum"] or ausgabe_total["montant__sum"]
     
     @property
     def get_cat_3(self):
